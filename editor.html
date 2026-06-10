@@ -26,7 +26,6 @@
       padding: 24px 16px;
     }
 
-    /* ESTILOS GLOBALES ESPACIALES */
     .app-shell {
       background: #050d1a;
       border-radius: 32px;
@@ -40,7 +39,6 @@
       box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(77,184,255,0.1);
     }
 
-    /* Fondo estrellas animado */
     .stars {
       position: absolute; inset: 0; pointer-events: none; overflow: hidden; border-radius: 32px;
       z-index: 0;
@@ -57,7 +55,6 @@
       animation: scan 7s linear infinite; pointer-events: none; z-index: 2;
     }
 
-    /* main layout: editor + sidebar */
     .dashboard-main {
       display: flex;
       flex-wrap: wrap;
@@ -67,14 +64,12 @@
       gap: 24px;
     }
 
-    /* COLUMNA IZQUIERDA (EDITOR PRINCIPAL) */
     .editor-col {
       flex: 2;
       min-width: 280px;
       backdrop-filter: blur(2px);
     }
 
-    /* BARRA SUPERIOR DEL EDITOR */
     .editor-header {
       display: flex;
       justify-content: space-between;
@@ -172,7 +167,6 @@
       color: #2f4b7a;
     }
 
-    /* COLUMNA DERECHA: paneles */
     .right-panels {
       flex: 1.2;
       min-width: 280px;
@@ -203,7 +197,6 @@
       padding: 12px 16px 18px;
     }
 
-    /* Librerías */
     .lib-list {
       display: flex;
       flex-wrap: wrap;
@@ -225,7 +218,6 @@
       color: white;
     }
 
-    /* Debugger */
     .debug-console {
       background: #030c1a;
       border-radius: 18px;
@@ -246,7 +238,6 @@
       font-size: 10px;
     }
 
-    /* Sección misiones compacta */
     .mini-missions {
       display: flex;
       flex-direction: column;
@@ -272,7 +263,6 @@
       border-radius: 50px;
     }
 
-    /* Asistente IA (COSMICA) */
     .ai-chat-area {
       display: flex;
       flex-direction: column;
@@ -319,7 +309,6 @@
       color: white;
     }
 
-    /* Indicador guardado */
     .save-toast {
       position: fixed;
       bottom: 30px;
@@ -339,36 +328,84 @@
       opacity: 0;
     }
 
-    /* responsive */
+    /* ===== NAVBAR UNIFICADO ===== */
+    .unified-nav {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 12px 20px 18px;
+      background: rgba(5,13,26,0.95);
+      border-top: 0.5px solid rgba(100,180,255,0.15);
+      position: relative;
+      z-index: 10;
+      width: 100%;
+    }
+    .unified-nav .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      padding: 8px 16px;
+      border-radius: 12px;
+      transition: all 0.2s ease;
+      background: transparent;
+    }
+    .unified-nav .nav-item:hover {
+      background: rgba(50,120,255,0.1);
+      transform: translateY(-2px);
+    }
+    .unified-nav .nav-item.active {
+      background: rgba(50,120,255,0.2);
+    }
+    .unified-nav .nav-item i {
+      font-size: 20px;
+      color: rgba(100,180,255,0.6);
+      transition: color 0.2s;
+    }
+    .unified-nav .nav-item.active i {
+      color: #4db8ff;
+      text-shadow: 0 0 8px rgba(77,184,255,0.5);
+    }
+    .unified-nav .nav-lbl {
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      color: rgba(100,180,255,0.5);
+      font-family: 'Orbitron', monospace;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .unified-nav .nav-item.active .nav-lbl {
+      color: #4db8ff;
+    }
+
+    .top-header {
+      padding: 14px 24px 0;
+      display: flex;
+      justify-content: space-between;
+      z-index: 3;
+      position: relative;
+    }
+    .logo-mark {
+      font-family: 'Orbitron', monospace;
+      font-size: 14px;
+      font-weight: 700;
+      color: #4db8ff;
+    }
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background: #00ffaa;
+      border-radius: 50%;
+      box-shadow: 0 0 6px #00ffaa;
+    }
+
     @media (max-width: 780px) {
       .dashboard-main {
         flex-direction: column;
       }
     }
-  
-/* ===== NAVBAR UNIFICADO ===== */
-.unified-nav {
-  display: flex; justify-content: space-around; align-items: center;
-  padding: 10px 20px 20px;
-  border-top: 0.5px solid rgba(100,180,255,0.1);
-  background: rgba(5,13,26,0.95);
-  position: relative; z-index: 10;
-}
-.unified-nav .nav-item {
-  display: flex; flex-direction: column; align-items: center; gap: 3px;
-  cursor: pointer; padding: 6px 12px; border-radius: 10px;
-  transition: background 0.2s;
-}
-.unified-nav .nav-item.active { background: rgba(50,120,255,0.15); }
-.unified-nav .nav-item i { font-size: 18px; color: rgba(100,180,255,0.5); }
-.unified-nav .nav-item.active i { color: #4db8ff; }
-.unified-nav .nav-lbl {
-  font-size: 9px; letter-spacing: 1px;
-  color: rgba(100,180,255,0.35);
-  font-family: 'Orbitron', monospace;
-}
-.unified-nav .nav-item.active .nav-lbl { color: #4db8ff; }
-</style>
+  </style>
 </head>
 <body>
 <div class="app-shell">
@@ -376,11 +413,11 @@
   <div class="scan-line"></div>
 
   <!-- Top bar espacial -->
-  <div style="padding: 14px 24px 0; display: flex; justify-content: space-between; z-index: 3; position: relative;">
-    <span class="logo-mark" style="font-family: 'Orbitron', monospace; font-size: 14px; font-weight: 700; color: #4db8ff;">ORBIT·IDE</span>
+  <div class="top-header">
+    <span class="logo-mark">ORBIT·IDE</span>
     <div style="display: flex; gap: 12px;">
       <i class="ti ti-device-desktop" style="color:#4db8ff80; font-size: 16px;"></i>
-      <div class="status-dot" style="width:8px;height:8px;background:#00ffaa;border-radius:50%;box-shadow:0 0 6px #00ffaa;"></div>
+      <div class="status-dot"></div>
     </div>
   </div>
 
@@ -445,18 +482,16 @@
         </div>
       </div>
 
-      <!-- Sección Misiones integrada (estilo mini) -->
+      <!-- Sección Misiones integrada -->
       <div class="panel">
         <div class="panel-title"><i class="ti ti-flag"></i> MISIONES ACTIVAS</div>
         <div class="panel-content">
-          <div class="mini-missions" id="miniMissionsList">
-            <!-- Se cargan dinámicamente, pero también estático por si acaso -->
-          </div>
+          <div class="mini-missions" id="miniMissionsList"></div>
           <div style="margin-top: 12px; font-size: 9px; text-align: center; color:#2f6799;"><i class="ti ti-rocket"></i> Completa misiones para desbloquear recompensas</div>
         </div>
       </div>
 
-      <!-- ASISTENTE IA: ORION (nombre astronómico) -->
+      <!-- ASISTENTE IA: ORION -->
       <div class="panel">
         <div class="panel-title"><i class="ti ti-robot"></i> ORION · ASISTENTE IA</div>
         <div class="panel-content">
@@ -474,12 +509,31 @@
     </div>
   </div>
 
-  <!-- Footer / navegación secundaria --></div>
+  <!-- NAVBAR UNIFICADO - INTEGRADO ABAJO -->
+  <div class="unified-nav">
+    <div class="nav-item" onclick="window.location.href='home.html'">
+      <i class="ti ti-rocket"></i>
+      <span class="nav-lbl">MISIONES</span>
+    </div>
+    <div class="nav-item active">
+      <i class="ti ti-code"></i>
+      <span class="nav-lbl">EDITOR</span>
+    </div>
+    <div class="nav-item" onclick="window.location.href='ranking.html'">
+      <i class="ti ti-chart-bar"></i>
+      <span class="nav-lbl">PROGRESO</span>
+    </div>
+    <div class="nav-item" onclick="window.location.href='perfil.html'">
+      <i class="ti ti-user"></i>
+      <span class="nav-lbl">PERFIL</span>
+    </div>
+  </div>
 </div>
+
 <div id="saveToast" class="save-toast">✨ Código guardado en órbita</div>
 
 <script>
-  // ---- ESTRELLAS DINÁMICAS ----
+  // ESTRELLAS DINÁMICAS
   const starsContainer = document.getElementById('stars');
   for(let i=0;i<90;i++){
     const star = document.createElement('div');
@@ -489,7 +543,7 @@
     starsContainer.appendChild(star);
   }
 
-  // ----- DOM elements ----
+  // DOM elements
   const codeTextarea = document.getElementById('codeEditor');
   const boardSelect = document.getElementById('boardSelect');
   const saveBtn = document.getElementById('saveCodeBtn');
@@ -501,15 +555,13 @@
   const aiChatDiv = document.getElementById('aiChatMessages');
   const miniMissionsContainer = document.getElementById('miniMissionsList');
 
-  // Configuración misiones (inspiradas en la interfaz principal)
   const missionsData = [
     { name: "LED Blink básico", level: "Nivel 1", status: "Completado", prog: "100%", codeSnippet: "void setup() {\n  pinMode(LED_BUILTIN, OUTPUT);\n}\nvoid loop() {\n  digitalWrite(LED_BUILTIN, HIGH);\n  delay(1000);\n  digitalWrite(LED_BUILTIN, LOW);\n  delay(1000);\n}" },
     { name: "Sensor de temperatura", level: "Nivel 2", status: "En progreso", prog: "60%", codeSnippet: "#include <DHT.h>\nDHT dht(2, DHT11);\nvoid setup() { Serial.begin(9600); dht.begin(); }\nvoid loop() { float t = dht.readTemperature(); Serial.println(t); delay(2000); }" },
-    { name: "Semáforo inteligente", level: "Nivel 2", status: "Disponible", prog: "0%", codeSnippet: "int rojo=9, amarillo=8, verde=7;\nvoid setup() { pinMode(rojo,OUTPUT);... } \nvoid loop() { /* secuencia */ }" },
+    { name: "Semáforo inteligente", level: "Nivel 2", status: "Disponible", prog: "0%", codeSnippet: "int rojo=9, amarillo=8, verde=7;\nvoid setup() { pinMode(rojo,OUTPUT); pinMode(amarillo,OUTPUT); pinMode(verde,OUTPUT); }\nvoid loop() { digitalWrite(verde,HIGH); delay(5000); digitalWrite(verde,LOW); digitalWrite(amarillo,HIGH); delay(2000); digitalWrite(amarillo,LOW); digitalWrite(rojo,HIGH); delay(5000); digitalWrite(rojo,LOW); }" },
     { name: "Control de servo motor", level: "Nivel 3", status: "BLOQUEADO", prog: "—", locked: true, codeSnippet: "#include <Servo.h>\nServo myservo;\nvoid setup() { myservo.attach(9); }\nvoid loop() { myservo.write(90); delay(1000); }" }
   ];
 
-  // Debugger helper: agregar mensaje
   function addDebugMessage(msg, type = "info") {
     const icon = type === "error" ? "ti-alert-triangle" : (type === "success" ? "ti-checks" : "ti-info-circle");
     const newLine = document.createElement('div');
@@ -517,14 +569,12 @@
     newLine.innerHTML = `<i class="ti ${icon}"></i> ${msg}`;
     debugConsoleDiv.appendChild(newLine);
     newLine.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    // mantener máximo 30 líneas
     while(debugConsoleDiv.children.length > 35) debugConsoleDiv.removeChild(debugConsoleDiv.firstChild);
   }
 
-  // Render mini misiones en panel derecho
   function renderMiniMissions() {
     miniMissionsContainer.innerHTML = '';
-    missionsData.forEach((mission, idx) => {
+    missionsData.forEach((mission) => {
       const div = document.createElement('div');
       div.className = 'mini-mission-item';
       div.style.cursor = mission.locked ? 'not-allowed' : 'pointer';
@@ -537,8 +587,6 @@
           if(mission.codeSnippet) {
             codeTextarea.value = mission.codeSnippet;
             addDebugMessage(`Cargada misión "${mission.name}" en el editor`, "success");
-          } else {
-            addDebugMessage(`Misión ${mission.name} lista para programar`, "info");
           }
         });
       } else {
@@ -549,7 +597,6 @@
   }
   renderMiniMissions();
 
-  // Funcionalidad librerías (click inserta #include)
   const libBadges = document.querySelectorAll('.lib-badge');
   libBadges.forEach(badge => {
     badge.addEventListener('click', () => {
@@ -559,8 +606,7 @@
       if(libName === "Servo.h") includeLine = `#include <Servo.h>`;
       if(libName === "Adafruit_NeoPixel") includeLine = `#include <Adafruit_NeoPixel.h>`;
       const current = codeTextarea.value;
-      const firstLine = current.split('\n')[0];
-      if(!firstlineStartsWithInclude(includeLine, current)) {
+      if(!current.includes(includeLine.split('<')[0]?.split('"')[0])) {
         codeTextarea.value = includeLine + "\n" + current;
         addDebugMessage(`Librería añadida: ${libName}`, "success");
       } else {
@@ -569,11 +615,6 @@
     });
   });
 
-  function firstlineStartsWithInclude(inc, fullCode) {
-    return fullCode.includes(inc.split('<')[0]?.split('"')[0]);
-  }
-
-  // GUARDAR CÓDIGO (localStorage simulado)
   saveBtn.addEventListener('click', () => {
     const code = codeTextarea.value;
     const board = boardSelect.value;
@@ -585,19 +626,16 @@
     addDebugMessage(`Código guardado en almacenamiento orbital (placa: ${board})`, "success");
   });
 
-  // Cargar código guardado al iniciar
   const savedCode = localStorage.getItem('orbital_saved_code');
   const savedBoard = localStorage.getItem('orbital_board');
   if(savedCode) codeTextarea.value = savedCode;
   if(savedBoard) boardSelect.value = savedBoard;
 
-  // LANZAR / COMPILADOR SIMULADO
   launchBtn.addEventListener('click', () => {
     const selectedBoard = boardSelect.value;
     const codeSnippet = codeTextarea.value;
     addDebugMessage(`🚀 Lanzando compilación para ${selectedBoard}...`, "info");
     setTimeout(() => {
-      // Simulación de compilación y debugging
       if(codeSnippet.includes("pinMode") && codeSnippet.includes("void setup")) {
         addDebugMessage(`✅ Compilación exitosa · Código sintaxis correcta. Subiendo a ${selectedBoard}...`, "success");
         addDebugMessage(`📡 Simulación: placa ${selectedBoard} ejecutando programa.`, "success");
@@ -606,20 +644,17 @@
       } else {
         addDebugMessage(`⚠️ Error de compilación: faltan funciones básicas (setup/loop)`, "error");
       }
-      // Microcheck extra
       if(codeSnippet.includes("digitalWrite") && !codeSnippet.includes("pinMode")) {
         addDebugMessage(`❓ Posible error: digitalWrite sin pinMode configurado`, "error");
       }
     }, 400);
   });
 
-  // Limpiar consola debug
   clearDebug.addEventListener('click', () => {
     debugConsoleDiv.innerHTML = `<div class="debug-line"><i class="ti ti-checks"></i> [SYS] Consola reiniciada</div>`;
     addDebugMessage(`Registro de depuración limpiado`, "info");
   });
 
-  // ---- ASISTENTE IA: ORION responde con temática astronómica y ayuda en código ----
   function getOrionResponse(userMsg) {
     const lowerMsg = userMsg.toLowerCase();
     if(lowerMsg.includes("servo")) return "Orion: El servo se controla con #include <Servo.h> y attach(). Recuerda alimentación externa para movimientos bruscos.";
@@ -639,7 +674,6 @@
     else msgDiv.innerHTML = `<i class="ti ti-stars"></i> ${message}`;
     aiChatDiv.appendChild(msgDiv);
     aiChatDiv.scrollTop = aiChatDiv.scrollHeight;
-    // limit history para no recargar
     while(aiChatDiv.children.length > 16) aiChatDiv.removeChild(aiChatDiv.firstChild);
   }
 
@@ -648,28 +682,17 @@
     if(!query) return;
     addAIMessage(query, true);
     const response = getOrionResponse(query);
-    setTimeout(() => {
-      addAIMessage(response, false);
-    }, 180);
+    setTimeout(() => { addAIMessage(response, false); }, 180);
     aiInput.value = '';
   }
 
   sendAi.addEventListener('click', handleAIQuery);
   aiInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') handleAIQuery(); });
 
-  // agregar a debug un mensaje de bienvenida extendida
   addDebugMessage("Asistente Orion en línea · sistema debugger activo", "success");
-  // Cambio de placa notifica debug
   boardSelect.addEventListener('change', () => {
     addDebugMessage(`Placa cambiada a ${boardSelect.value} · Ajusta pines según arquitectura`, "info");
   });
 </script>
-
-<div class="unified-nav">
-  <div class="nav-item" onclick="window.location.href='home.html'"><i class="ti ti-rocket"></i><span class="nav-lbl">MISIONES</span></div>
-  <div class="nav-item active"><i class="ti ti-code"></i><span class="nav-lbl">EDITOR</span></div>
-  <div class="nav-item" onclick="window.location.href='ranking.html'"><i class="ti ti-chart-bar"></i><span class="nav-lbl">PROGRESO</span></div>
-  <div class="nav-item" onclick="window.location.href='perfil.html'"><i class="ti ti-user"></i><span class="nav-lbl">PERFIL</span></div>
-</div>
 </body>
 </html>
