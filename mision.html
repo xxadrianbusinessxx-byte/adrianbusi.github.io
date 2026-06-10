@@ -65,7 +65,7 @@
     .mission-container {
       position: relative;
       z-index: 5;
-      padding: 20px 28px 32px;
+      padding: 20px 28px 24px;
     }
 
     .top-mission-bar {
@@ -99,24 +99,6 @@
       font-size: 11px;
       font-family: 'Orbitron', monospace;
       color: #bbd9ff;
-    }
-    .back-button {
-      background: rgba(30,60,110,0.4);
-      border: 1px solid rgba(100,180,255,0.3);
-      border-radius: 32px;
-      padding: 8px 16px;
-      font-size: 12px;
-      color: #aad0ff;
-      cursor: pointer;
-      transition: 0.2s;
-      font-family: 'Orbitron', monospace;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .back-button:hover {
-      background: #1f4880;
-      border-color: #6db5ff;
     }
 
     .mission-grid {
@@ -225,7 +207,7 @@
       box-shadow: 0 0 12px rgba(77,184,255,0.5);
     }
 
-    /* Orion Panel mejorado con imagen */
+    /* Orion Panel */
     .orion-panel {
       background: rgba(10, 20, 40, 0.65);
       backdrop-filter: blur(14px);
@@ -282,7 +264,6 @@
       color: #f0ecff;
       border-left: 3px solid #a17eff;
     }
-    /* Área de imagen + detección de misión */
     .vision-area {
       background: #07142a;
       border-radius: 24px;
@@ -374,6 +355,9 @@
       color: white;
       transition: 0.2s;
     }
+    .orion-input-area button:hover {
+      background: #6f93df;
+    }
     .status-dot {
       width: 10px;
       height: 10px;
@@ -383,34 +367,63 @@
       display: inline-block;
       margin-left: 8px;
     }
+
+    /* ===== NAVBAR UNIFICADO ===== */
+    .unified-nav {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 12px 20px 18px;
+      background: rgba(5,13,26,0.95);
+      border-top: 0.5px solid rgba(100,180,255,0.15);
+      position: relative;
+      z-index: 10;
+      width: 100%;
+    }
+    .unified-nav .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      padding: 8px 16px;
+      border-radius: 12px;
+      transition: all 0.2s ease;
+      background: transparent;
+    }
+    .unified-nav .nav-item:hover {
+      background: rgba(50,120,255,0.1);
+      transform: translateY(-2px);
+    }
+    .unified-nav .nav-item.active {
+      background: rgba(50,120,255,0.2);
+    }
+    .unified-nav .nav-item i {
+      font-size: 20px;
+      color: rgba(100,180,255,0.6);
+      transition: color 0.2s;
+    }
+    .unified-nav .nav-item.active i {
+      color: #4db8ff;
+      text-shadow: 0 0 8px rgba(77,184,255,0.5);
+    }
+    .unified-nav .nav-lbl {
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      color: rgba(100,180,255,0.5);
+      font-family: 'Orbitron', monospace;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .unified-nav .nav-item.active .nav-lbl {
+      color: #4db8ff;
+    }
+
     @media (max-width: 750px) {
       .mission-container { padding: 16px; }
       .mission-name-header { font-size: 22px; }
     }
-  
-/* ===== NAVBAR UNIFICADO ===== */
-.unified-nav {
-  display: flex; justify-content: space-around; align-items: center;
-  padding: 10px 20px 20px;
-  border-top: 0.5px solid rgba(100,180,255,0.1);
-  background: rgba(5,13,26,0.95);
-  position: relative; z-index: 10;
-}
-.unified-nav .nav-item {
-  display: flex; flex-direction: column; align-items: center; gap: 3px;
-  cursor: pointer; padding: 6px 12px; border-radius: 10px;
-  transition: background 0.2s;
-}
-.unified-nav .nav-item.active { background: rgba(50,120,255,0.15); }
-.unified-nav .nav-item i { font-size: 18px; color: rgba(100,180,255,0.5); }
-.unified-nav .nav-item.active i { color: #4db8ff; }
-.unified-nav .nav-lbl {
-  font-size: 9px; letter-spacing: 1px;
-  color: rgba(100,180,255,0.35);
-  font-family: 'Orbitron', monospace;
-}
-.unified-nav .nav-item.active .nav-lbl { color: #4db8ff; }
-</style>
+  </style>
 </head>
 <body>
 <div class="app-shell">
@@ -422,9 +435,6 @@
       <div class="logo-area">
         <span class="logo-mark">ORBIT·IDE</span>
         <div class="badge-mission"><i class="ti ti-rocket" style="margin-right: 6px;"></i> MISIÓN ACTIVA</div>
-      </div>
-      <div class="back-button" id="backToEditorBtn">
-        <i class="ti ti-arrow-left"></i> EDITOR PRINCIPAL
       </div>
     </div>
 
@@ -479,7 +489,6 @@
             </div>
           </div>
 
-          <!-- NUEVA SECCIÓN: Subida de imagen + detección de misión aprobada/fallida -->
           <div class="vision-area">
             <div class="vision-title"><i class="ti ti-photo"></i> ESCANEO DE MISIÓN · ORION VISION</div>
             <div class="image-upload-box">
@@ -504,6 +513,26 @@
       </div>
     </div>
   </div>
+
+  <!-- NAVBAR UNIFICADO - INTEGRADO ABAJO -->
+  <div class="unified-nav">
+    <div class="nav-item active" onclick="window.location.href='home.html'">
+      <i class="ti ti-rocket"></i>
+      <span class="nav-lbl">MISIONES</span>
+    </div>
+    <div class="nav-item" onclick="window.location.href='editor.html'">
+      <i class="ti ti-code"></i>
+      <span class="nav-lbl">EDITOR</span>
+    </div>
+    <div class="nav-item" onclick="window.location.href='ranking.html'">
+      <i class="ti ti-chart-bar"></i>
+      <span class="nav-lbl">PROGRESO</span>
+    </div>
+    <div class="nav-item" onclick="window.location.href='perfil.html'">
+      <i class="ti ti-user"></i>
+      <span class="nav-lbl">PERFIL</span>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -517,7 +546,7 @@
     starsContainer.appendChild(star);
   }
 
-  // ========== DATOS DE MISIÓN (con soporte para varias misiones) ==========
+  // ========== DATOS DE MISIÓN ==========
   let currentMission = {
     id: "temp_sensor",
     name: "Sensor de temperatura",
@@ -594,11 +623,7 @@
     } else {
       localStorage.setItem('orbital_board', 'Arduino Uno');
     }
-    const confirmRedirect = confirm("🚀 ¿Lanzar al EDITOR ORBIT? El código de la misión se cargará automáticamente.");
-    if (confirmRedirect) {
-      alert("Editor abierto: código precargado. Redirigiendo...");
-      window.location.href = 'editor.html';
-    }
+    window.location.href = 'editor.html';
   }
 
   // ========== CHAT ORION ==========
@@ -667,9 +692,6 @@
     }
   });
 
-  // Función inteligente que simula detección de misión aprobada/fallida (usando IA simulada + contexto de la misión)
-  // El sistema evaluará según el tipo de misión y un análisis de "metadatos" simulados
-  // Además se incluye aleatoriedad controlada + lógica de keyword de la imagen (demo educativa)
   function analyzeMissionPassed() {
     if (!uploadedImageData) {
       visionResultDiv.innerHTML = "⚠️ Orion no detecta ninguna imagen. Sube una foto de tu circuito / monitor serie para evaluar la misión.";
@@ -677,18 +699,11 @@
       return;
     }
 
-    // Simular análisis basado en la misión actual y "contenido" de la imagen (simulación didáctica)
-    // En una aplicación real conectaríamos con IA, aquí se detecta aleatoriamente pero también simula un "check"
-    // Para hacerlo más realista según la misión:
     let missionPassed = false;
     let feedback = "";
-
-    // Para cada tipo de misión se simula una evaluación (puede ser aleatoria pero coherente)
-    // Como demo educativa, la imagen tiene 70% de probabilidad de ser válida si la misión tiene código base.
-    // Además para hacerla más entretenida, evaluamos el nombre de archivo ficticio, pero siempre dejamos que el usuario pueda "aprobar"
     const randomSeed = Math.random();
+
     if (currentMission.id === "temp_sensor") {
-      // Si el usuario subió imagen, asumimos que tiene una probabilidad del 65% de haber completado correctamente.
       missionPassed = randomSeed > 0.35;
       feedback = missionPassed ? 
         "✅ ¡Felicidades! Orion Vision analiza tu imagen: se identifica montaje con sensor de temperatura y conexiones correctas. Has superado la MISIÓN. Recompensa: +250 XP y la insignia Termal Explorer." :
@@ -697,7 +712,7 @@
     else if (currentMission.id === "blink") {
       missionPassed = randomSeed > 0.3;
       feedback = missionPassed ?
-        "✨ ¡Misíon LED Blink completada! La imagen muestra el LED encendido/apagado correctamente. Recibirás +100 XP y la insignia Primera Luz." :
+        "✨ ¡Misión LED Blink completada! La imagen muestra el LED encendido/apagado correctamente. Recibirás +100 XP y la insignia Primera Luz." :
         "⚠️ No se visualiza correctamente el parpadeo del LED o falta la conexión a tierra. Sube una imagen con el LED funcionando.";
     }
     else if (currentMission.id === "servo") {
@@ -714,8 +729,10 @@
     }
 
     if (missionPassed) {
-      // Guardar progreso simulado
       localStorage.setItem(`mission_${currentMission.id}_completed`, 'true');
+      const currentXP = parseInt(localStorage.getItem('userXP') || '620');
+      const xpGain = parseInt(currentMission.rewardXP) || 250;
+      localStorage.setItem('userXP', (currentXP + xpGain).toString());
       visionResultDiv.innerHTML = `<i class="ti ti-circle-check" style="color:#3bed7c;"></i> ${feedback}`;
       addOrionMessage(`🔍 Análisis completado: ¡Misión superada! ${currentMission.rewardXP} añadidos a tu cuenta.`, false);
     } else {
@@ -730,9 +747,6 @@
 
   // Eventos
   document.getElementById('goToEditorBtn').addEventListener('click', goToCodeEditor);
-  document.getElementById('backToEditorBtn').addEventListener('click', () => {
-    window.location.href = 'editor.html';
-  });
   orionBtn.addEventListener('click', handleOrionAsk);
   orionInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') handleOrionAsk(); });
 
@@ -740,12 +754,5 @@
   renderMissionDetails();
   addOrionMessage(`Estoy listo. Para la misión "${currentMission.name}", sube una imagen y usaré Orion Vision para verificar si la superaste.`, false);
 </script>
-
-<div class="unified-nav">
-  <div class="nav-item active"><i class="ti ti-rocket"></i><span class="nav-lbl">MISIONES</span></div>
-  <div class="nav-item" onclick="window.location.href='editor.html'"><i class="ti ti-code"></i><span class="nav-lbl">EDITOR</span></div>
-  <div class="nav-item" onclick="window.location.href='ranking.html'"><i class="ti ti-chart-bar"></i><span class="nav-lbl">PROGRESO</span></div>
-  <div class="nav-item" onclick="window.location.href='perfil.html'"><i class="ti ti-user"></i><span class="nav-lbl">PERFIL</span></div>
-</div>
 </body>
 </html>
