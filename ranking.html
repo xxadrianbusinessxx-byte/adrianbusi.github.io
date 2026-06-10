@@ -314,7 +314,30 @@
       .podium-card { width: 110px; padding: 12px; }
       .podium-avatar { width: 50px; height: 50px; font-size: 24px; }
     }
-  </style>
+  
+/* ===== NAVBAR UNIFICADO ===== */
+.unified-nav {
+  display: flex; justify-content: space-around; align-items: center;
+  padding: 10px 20px 20px;
+  border-top: 0.5px solid rgba(100,180,255,0.1);
+  background: rgba(5,13,26,0.95);
+  position: relative; z-index: 10;
+}
+.unified-nav .nav-item {
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  cursor: pointer; padding: 6px 12px; border-radius: 10px;
+  transition: background 0.2s;
+}
+.unified-nav .nav-item.active { background: rgba(50,120,255,0.15); }
+.unified-nav .nav-item i { font-size: 18px; color: rgba(100,180,255,0.5); }
+.unified-nav .nav-item.active i { color: #4db8ff; }
+.unified-nav .nav-lbl {
+  font-size: 9px; letter-spacing: 1px;
+  color: rgba(100,180,255,0.35);
+  font-family: 'Orbitron', monospace;
+}
+.unified-nav .nav-item.active .nav-lbl { color: #4db8ff; }
+</style>
 </head>
 <body>
 <div class="app-shell">
@@ -607,5 +630,12 @@
   }
   addNebulaGlow();
 </script>
+
+<div class="unified-nav">
+  <div class="nav-item" onclick="window.location.href='home.html'"><i class="ti ti-rocket"></i><span class="nav-lbl">MISIONES</span></div>
+  <div class="nav-item" onclick="window.location.href='editor.html'"><i class="ti ti-code"></i><span class="nav-lbl">EDITOR</span></div>
+  <div class="nav-item active"><i class="ti ti-chart-bar"></i><span class="nav-lbl">PROGRESO</span></div>
+  <div class="nav-item" onclick="window.location.href='perfil.html'"><i class="ti ti-user"></i><span class="nav-lbl">PERFIL</span></div>
+</div>
 </body>
 </html>
